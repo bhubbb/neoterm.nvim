@@ -8,6 +8,7 @@ local state = {
 
 local config = {
   clear_on_run = true,
+  cancel_on_run = true,
   mode = "vertical",
   noinsert = false,
 }
@@ -169,13 +170,14 @@ end
 function neoterm.run(command, opts)
   opts = opts or {
     clear = config.clear_on_run,
+    cancel = config.cancel_on_run,
   }
 
   if win_is_open() == false or state.chan == nil then
     neoterm.open()
   end
 
-  if state.last_command ~= nil then
+  if state.last_command ~= nil and opt.cancel then
     -- Send <C-c> to make sure any on-going commands like log tails are stopped before running the new command
     vim.api.nvim_chan_send(state.chan, "\003\n")
   end
