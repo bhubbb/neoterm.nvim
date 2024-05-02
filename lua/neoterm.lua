@@ -173,6 +173,10 @@ function neoterm.run(command, opts)
     cancel = config.cancel_on_run,
   }
 
+  if not opts.cancel then
+    nerterm.close()
+  end
+  
   if win_is_open() == false or state.chan == nil then
     neoterm.open()
   end
