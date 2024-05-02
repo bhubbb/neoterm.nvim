@@ -173,7 +173,7 @@ function neoterm.run(command, opts)
     cancel = config.cancel_on_run,
   }
 
-  if not opts.cancel then
+  if opts.cancel == false and win_is_open() then
     nerterm.close()
   end
   
