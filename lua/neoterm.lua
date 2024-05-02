@@ -177,7 +177,7 @@ function neoterm.run(command, opts)
     neoterm.open()
   end
 
-  if state.last_command ~= nil and opt.cancel then
+  if state.last_command ~= nil and opt != nil and opt.cancel != nil and opt.cancel then
     -- Send <C-c> to make sure any on-going commands like log tails are stopped before running the new command
     vim.api.nvim_chan_send(state.chan, "\003\n")
   end
